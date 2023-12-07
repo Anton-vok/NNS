@@ -28,7 +28,7 @@ fun segmentOne(){
         .background(BackgroundTwoColor)
 
     ){
-
+        ScheduleBlock(NNBD)
     }
 }
 
@@ -43,7 +43,7 @@ fun segmentTwo() {
         Box(
             Modifier.fillMaxWidth(0.95f)
         ) {
-            addLesson(NNSBD())
+            addLesson(NNBD)
         }
         Box(Modifier.fillMaxWidth(0.01f)){}
     }
