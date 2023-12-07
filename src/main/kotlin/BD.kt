@@ -15,6 +15,7 @@ class Lesson(nName: String, nDay: Int, nClassRoom: MutableList<Int>, nTeacher: S
     var color= Color.WHITE
 }
 class NNSBD(day: Int, classroom: Int){
+    var classroomInt=classroom
     var Lessons = Array<Array<MutableState<List<Lesson>>>> (day) { Array<MutableState<List<Lesson>>> (classroom) {mutableStateOf( listOf<Lesson>() ) } }
     fun add(lesson: Lesson){
         var day=lesson.day-1
