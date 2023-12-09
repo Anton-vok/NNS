@@ -12,7 +12,7 @@ class Lesson(nName: String, nDay: Int, nClassRoom: MutableList<Int>, nTeacher: S
     var timeStart=nTimeStart
     var timeEnd=nTimeEnd
 
-    var color= Color.WHITE
+    var color= ButtonOneColor
 }
 class NNSBD(day: Int, classroom: Int){
     var classroomInt=classroom

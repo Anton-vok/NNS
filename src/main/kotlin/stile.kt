@@ -11,12 +11,12 @@ import androidx.compose.ui.input.key.Key.Companion.R
 import androidx.compose.ui.unit.sp
 
 
-var BackgroundOneColor= Color(201,228,234,100)
-var BackgroundTwoColor= Color(200,200,200,100)
-var TextColor= Color(51,51,51,100)
-var ButtonOneColor= Color(66,133,244,100)
-var ButtonTwoColor= Color(255,138,128,100)
-var PanelOneColor= Color(255,255,255,100)
+var BackgroundOneColor= Color(0xFFC9E4EA)
+var BackgroundTwoColor= Color(0xFFF5F5F5)
+var TextColor= Color(0xFF333333)
+var ButtonOneColor= Color(0xFF1E73FF)
+var ButtonTwoColor= Color(0xFFFF8A80)
+var PanelOneColor= Color(0xFFFFFFFF)
 
 var textStyle1=TextStyle(
     fontFamily = FontFamily.SansSerif,
@@ -43,5 +43,12 @@ var textStyle4=TextStyle(
     fontFamily = FontFamily.SansSerif,
     color = TextColor,
     fontSize = 15.sp,
+    fontWeight = FontWeight.Bold
+)
+
+var textStyle5=TextStyle(
+    fontFamily = FontFamily.SansSerif,
+    color = TextColor,
+    fontSize = 12.sp,
     fontWeight = FontWeight.Bold
 )
