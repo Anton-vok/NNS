@@ -23,20 +23,8 @@ fun addLesson(BD: NNSBD){
     var lessonThree = remember { mutableStateOf("") }
     var lessonFour = remember { mutableStateOf("") }
 
-
-    var focusName =  remember { FocusRequester() }
-    var focusTeacher =  remember { FocusRequester() }
-
-    var focusDay =  remember { FocusRequester() }
-    var focusStartOne =  remember { FocusRequester() }
-    var focusStartTwo =  remember { FocusRequester() }
-    var focusEndOne =  remember { FocusRequester() }
-    var focusEndTwo =  remember { FocusRequester() }
-
-    var focusLessonOne =  remember { FocusRequester() }
-    var focusLessonTwo =  remember { FocusRequester() }
-    var focusLessonThree =  remember { FocusRequester() }
-    var focusLessonFour =  remember { FocusRequester() }
+    var expandedTwo = remember { mutableStateOf(false) }
+    var expandedOne = remember { mutableStateOf(false) }
 
     Column(Modifier.fillMaxSize()){
 
@@ -47,27 +35,9 @@ fun addLesson(BD: NNSBD){
         Row(Modifier.weight(0.160f).wrapContentSize(Alignment.Center)){
             Column {
                 Text("Название урока", style = textStyle3)
-                PanelInput(name, focusName)
+                PanelInputTwo(name, expandedOne)
+                SelectPanel(name, BD.lessonsType, expandedOne)
             }
-        }
-
-        Row(Modifier.weight(0.160f).wrapContentSize(Alignment.Center)){
-            Column {
-                Text("Учитель", style = textStyle3)
-                PanelInput(teacher, focusTeacher)
-            }
-        }
-
-        Row(Modifier.weight(0.08f).wrapContentSize(Alignment.Center)){
-            Text(style = textStyle3, text="Дата и время")
-        }
-
-        Row(Modifier.weight(0.130f).wrapContentSize(Alignment.Center)){
-            Row(Modifier.weight(0.15f).background(PanelOneColor)){ PanelInput(day, focusDay) }
-            Row(Modifier.weight(0.125f)){}
-            Row(Modifier.weight(0.30f)){ Timing(startOne, focusStartOne, startTwo, focusStartTwo) }
-            Row(Modifier.weight(0.125f)){}
-            Row(Modifier.weight(0.30f)){ Timing(endOne, focusEndOne, endTwo, focusEndTwo) }
         }
 
         Row(Modifier.weight(0.08f).wrapContentSize(Alignment.Center)){
@@ -76,20 +46,40 @@ fun addLesson(BD: NNSBD){
 
         Row(Modifier.weight(0.130f).wrapContentSize(Alignment.Center)){
             Row(Modifier.weight(0.2f).wrapContentSize(Alignment.Center)){
-                PanelInput(lessonOne, focusLessonOne)
+                PanelInput(lessonOne)
             }
             Row(Modifier.weight(0.05f).wrapContentSize(Alignment.Center)){}
             Row(Modifier.weight(0.2f).wrapContentSize(Alignment.Center)){
-                 PanelInput(lessonTwo, focusLessonTwo)
+                PanelInput(lessonTwo)
             }
             Row(Modifier.weight(0.05f).wrapContentSize(Alignment.Center)){}
             Row(Modifier.weight(0.2f).wrapContentSize(Alignment.Center)){
-                PanelInput(lessonThree, focusLessonThree)
+                PanelInput(lessonThree)
             }
             Row(Modifier.weight(0.05f).wrapContentSize(Alignment.Center)){}
             Row(Modifier.weight(0.2f).wrapContentSize(Alignment.Center)){
-                PanelInput(lessonFour, focusLessonFour)
+                PanelInput(lessonFour)
             }
+        }
+
+        Row(Modifier.weight(0.160f).wrapContentSize(Alignment.Center)){
+            Column {
+                Text("Учитель", style = textStyle3)
+                PanelInputTwo(teacher, expandedTwo)
+                SelectPanel(teacher, BD.teacher, expandedTwo)
+            }
+        }
+
+        Row(Modifier.weight(0.08f).wrapContentSize(Alignment.Center)){
+            Text(style = textStyle3, text="Дата и время")
+        }
+
+        Row(Modifier.weight(0.130f).wrapContentSize(Alignment.Center)){
+            Row(Modifier.weight(0.15f).background(PanelOneColor)){ PanelInput(day) }
+            Row(Modifier.weight(0.125f)){}
+            Row(Modifier.weight(0.30f)){ Timing(startOne, startTwo) }
+            Row(Modifier.weight(0.125f)){}
+            Row(Modifier.weight(0.30f)){ Timing(endOne, endTwo) }
         }
 
         Column (Modifier.weight(0.16f).wrapContentSize(Alignment.Center)) {

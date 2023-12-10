@@ -15,6 +15,8 @@ class Lesson(nName: String, nDay: Int, nClassRoom: MutableList<Int>, nTeacher: S
     var color= ButtonOneColor
 }
 class NNSBD(day: Int, classroom: Int){
+    var lessonsType= mutableListOf<String>("Физика", "Математика", "Русский")
+    var teacher= mutableListOf<String>("Андрей", "Илья", "Паша")
     var classroomInt=classroom
     var Lessons = Array<Array<MutableState<List<Lesson>>>> (day) { Array<MutableState<List<Lesson>>> (classroom) {mutableStateOf( listOf<Lesson>() ) } }
     fun add(lesson: Lesson){
