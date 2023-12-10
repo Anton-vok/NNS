@@ -1,14 +1,16 @@
+import One.ScheduleBlock
+import Two.ReLesson
+import Two.TeacherPanel
+import Two.addLesson
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+
+var twoPanelRe = mutableStateOf(false)
+var twoPanelReVale = mutableStateOf(Lesson("",1, mutableListOf(1), "", 1, 1))
 
 
 @Composable
@@ -20,7 +22,7 @@ fun mainBox(){
             .background(PanelOneColor)
     ){
         segmentOne()
-        Row(Modifier){
+        Row(Modifier.fillMaxWidth().fillMaxHeight(1f)){
             segmentTwo()
             segmentThree()
             segmentFour()
@@ -30,7 +32,7 @@ fun mainBox(){
 
 @Composable
 fun segmentOne(){
-    Box(Modifier
+    Row(Modifier
         .fillMaxHeight(0.6f)
         .background(BackgroundTwoColor)
 
@@ -47,10 +49,8 @@ fun segmentTwo() {
             .background(BackgroundOneColor)
     ) {
         Box(Modifier.fillMaxWidth(0.04f)){}
-        Box(
-            Modifier.fillMaxWidth(0.95f)
-        ) {
-            addLesson(NNBD)
+        Box(Modifier.fillMaxWidth(0.95f)) {
+            if (twoPanelRe.value){ ReLesson(NNBD, twoPanelReVale.value) }else{ addLesson(NNBD) }
         }
         Box(Modifier.fillMaxWidth(0.01f)){}
     }
@@ -58,21 +58,20 @@ fun segmentTwo() {
 
 @Composable
 fun segmentThree(){
-    Box(Modifier
-        .fillMaxHeight(1f)
-        .fillMaxWidth(0.74f)
+    Row(Modifier
+        .fillMaxHeight()
+        .fillMaxWidth(0.92f)
         .background(BackgroundOneColor)
     ){
-
-
+        TeacherPanel(NNBD)
     }
 }
 
 @Composable
 fun segmentFour(){
-    Box(Modifier
+    Row(Modifier
         .fillMaxHeight(1f)
-        .fillMaxWidth(0.08f)
+        .fillMaxWidth()
         .background(BackgroundOneColor)
     ){
 

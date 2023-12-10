@@ -87,61 +87,6 @@ fun Timing(One: MutableState<String>, Two: MutableState<String>){
 }
 
 @Composable
-fun addButton(BD: NNSBD, name: MutableState<String>, day: MutableState<String>, lessons: List<MutableState<String>>, teacher: MutableState<String>, startOne: MutableState<String>, startTwo: MutableState<String>, endOne: MutableState<String>, endTwo: MutableState<String>){
-    Surface(
-        modifier = Modifier
-            .fillMaxSize(1f)
-            .clickable(onClick = {
-                var classrooms= mutableListOf<Int>()
-                for (i in lessons){
-                    if (i.value!=""){
-                        classrooms.add(i.value.toInt())
-                    }
-                }
-                if (name.value!="" &&
-                    day.value.toIntOrNull()!=null &&
-                    !classrooms.isEmpty() &&
-                    teacher.value!="" &&
-                    startOne.value.toIntOrNull()!=null &&
-                    startTwo.value.toIntOrNull()!=null &&
-                    endOne.value.toIntOrNull()!=null &&
-                    endTwo.value.toIntOrNull()!=null
-
-                ) {
-                    BD.add(
-                        Lesson(
-                            name.value,
-                            day.value.toInt(),
-                            classrooms,
-                            teacher.value,
-                            startOne.value.toInt() * 60 + startTwo.value.toInt(),
-                            endOne.value.toInt() * 60 + endTwo.value.toInt()
-                        )
-                    )
-                    name.value = ""
-                    day.value = ""
-                    for (i in lessons){
-                        i.value=""
-                    }
-                    teacher.value = ""
-                    startOne.value = ""
-                    startTwo.value = ""
-                    endOne.value = ""
-                    endTwo.value = ""
-                }
-            }),
-        color = ButtonOneColor,
-        contentColor = Color.White,
-        shape = RoundedCornerShape(10.dp)
-    ) {
-        Box(Modifier.fillMaxSize(1f),
-            contentAlignment = Alignment.Center) {
-            Text("Сохранить")
-        }
-    }
-}
-
-@Composable
 fun SelectPanel(
     onItemSelected: MutableState<String>,
     allSuggestions: MutableList<String>,
