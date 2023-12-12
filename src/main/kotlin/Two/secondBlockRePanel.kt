@@ -4,6 +4,7 @@ import ButtonOneColor
 import ButtonTwoColor
 import Lesson
 import NNSBD
+import One.classroom
 import PanelInput
 import PanelInputTwo
 import PanelOneColor
@@ -57,7 +58,7 @@ fun ReLesson(BD: NNSBD, lesson: Lesson){
             Column {
                 Text("Название урока", style = textStyle3)
                 PanelInputTwo(name, expandedOne)
-                SelectPanel(name, BD.oldLessonsType, expandedOne)
+                SelectPanel(name, BD.lessonType.value, expandedOne)
             }
         }
 
@@ -77,8 +78,11 @@ fun ReLesson(BD: NNSBD, lesson: Lesson){
         Row(Modifier.weight(0.160f).wrapContentSize(Alignment.Center)){
             Column {
                 Text("Учитель", style = textStyle3)
+                if (lessons[0].value!="" && name.value!="" && lessons[0].value.toIntOrNull()!=null && teacher.value==""){
+                    BD.findLesTea(name.value, lessons[0].value.toInt(), teacher)
+                }
                 PanelInputTwo(teacher, expandedTwo)
-                SelectPanel(teacher, BD.oldTeacher, expandedTwo)
+                SelectPanel(teacher, BD.teachers.value, expandedTwo)
             }
         }
 

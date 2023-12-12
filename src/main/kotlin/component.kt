@@ -89,12 +89,12 @@ fun Timing(One: MutableState<String>, Two: MutableState<String>){
 @Composable
 fun SelectPanel(
     onItemSelected: MutableState<String>,
-    allSuggestions: MutableList<String>,
+    allSuggestions: List<ToSelectPanel>,
     expanded: MutableState<Boolean>
 ) {
     Column {
         if (expanded.value) {
-            val filteredSuggestions = allSuggestions.filter { it.contains(onItemSelected.value, ignoreCase = true) }
+            val filteredSuggestions = allSuggestions.filter { it.name.contains(onItemSelected.value, ignoreCase = true) }
             Popup(
                 alignment = Alignment.TopStart,
                 onDismissRequest = { expanded.value = false }
@@ -106,12 +106,12 @@ fun SelectPanel(
                         Box(
                             modifier = Modifier.fillMaxWidth()
                                 .clickable {
-                                    onItemSelected.value = suggestion
+                                    onItemSelected.value = suggestion.name
                                     expanded.value = false
                                 }
                                 .padding(8.dp)
                         ) {
-                            Text(suggestion)
+                            Text(suggestion.name)
                         }
                     }
                 }

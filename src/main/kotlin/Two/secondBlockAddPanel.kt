@@ -48,7 +48,7 @@ fun addLesson(BD: NNSBD){
             Column {
                 Text("Название урока", style = textStyle3)
                 PanelInputTwo(name, expandedOne)
-                SelectPanel(name, BD.oldLessonsType, expandedOne)
+                SelectPanel(name, BD.lessonType.value, expandedOne)
             }
         }
 
@@ -68,8 +68,11 @@ fun addLesson(BD: NNSBD){
         Row(Modifier.weight(0.160f).wrapContentSize(Alignment.Center)){
             Column {
                 Text("Учитель", style = textStyle3)
+                if (lessons[0].value!="" && name.value!="" && lessons[0].value.toIntOrNull()!=null && teacher.value==""){
+                    BD.findLesTea(name.value, lessons[0].value.toInt(), teacher)
+                }
                 PanelInputTwo(teacher, expandedTwo)
-                SelectPanel(teacher, BD.oldTeacher, expandedTwo)
+                SelectPanel(teacher, BD.teachers.value, expandedTwo)
             }
         }
 
