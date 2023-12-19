@@ -13,12 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 
 @Composable
-fun PanelInput(endOne: MutableState<String>){
+fun PanelInput(endOne: MutableState<String>, myFocus: MutableState<Boolean> = mutableStateOf(false)){
     var FocusDay by remember { mutableStateOf(false) }
     var colorDay=if(FocusDay) Color(115, 32, 239) else Color(145, 151, 153)
         Box(
@@ -33,42 +34,14 @@ fun PanelInput(endOne: MutableState<String>){
                 Modifier
                     .align(Alignment.Center)
                     .padding(vertical = 8.dp)
-                    .onFocusChanged { focusState -> FocusDay = focusState.isFocused },
+                    .onFocusChanged { focusState -> FocusDay = focusState.isFocused
+                        myFocus.value = focusState.isFocused},
                 singleLine = true,
                 textStyle = textStyle4
             )
 
     }
 }
-
-@Composable
-fun PanelInputTwo(endOne: MutableState<String>, myFocus: MutableState<Boolean>){
-    var FocusDay by remember { mutableStateOf(false) }
-    var colorDay=if(FocusDay) Color(115, 32, 239) else Color(145, 151, 153)
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .border(1.dp, colorDay, shape = RoundedCornerShape(4.dp))
-            .background(PanelOneColor)
-    ) {
-        BasicTextField(
-            value = endOne.value,
-            onValueChange = {
-                endOne.value = it },
-            Modifier
-                .align(Alignment.Center)
-                .padding(vertical = 8.dp)
-                .onFocusChanged {
-                    focusState -> FocusDay = focusState.isFocused
-                    myFocus.value = focusState.isFocused},
-            singleLine = true,
-            textStyle = textStyle4
-        )
-
-    }
-}
-
-
 
 @Composable
 fun Timing(One: MutableState<String>, Two: MutableState<String>){
@@ -121,6 +94,17 @@ fun SelectPanel(
 }
 
 @Composable
-fun ColorPicer(color: Color){
-    
+fun cosButton(onClick: () -> Unit, color: MutableState<Color>, text: MutableState<String>, textStyle: TextStyle){
+    Surface(
+        modifier = Modifier
+            .fillMaxSize(1f)
+            .clickable(onClick = onClick),
+        color = color.value,
+        shape = RoundedCornerShape(10.dp)
+    ) {
+        Box(Modifier.fillMaxSize(1f),
+            contentAlignment = Alignment.Center) {
+            Text(text.value, style = textStyle)
+        }
+    }
 }

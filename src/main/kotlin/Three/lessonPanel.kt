@@ -1,14 +1,10 @@
 package Three
 
-import BackgroundOneColor
 import BackgroundTwoColor
 import ButtonOneColor
-import Lesson
 import LessonType
 import NNSBD
-import One.day
 import PanelInput
-import PanelInputTwo
 import PanelOneColor
 import SelectPanel
 import Teacher
@@ -26,8 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
-import androidx.compose.ui.text.input.KeyboardType.Companion.Text
 import androidx.compose.ui.unit.dp
 import textStyle1
 import textStyle2
@@ -40,8 +34,6 @@ fun LessonPanel(BD: NNSBD){
     if (BD.classroomInt%6!=0){ h+=1 }
     h*=60
     h+=115
-
-    //TODO убрать костыль
 
     Column(Modifier.fillMaxSize()) {
         var nya= mutableListOf("")
@@ -119,7 +111,7 @@ fun addLesson(BD: NNSBD){
                                 if (i.size - 1 >= j) {
                                     Column(Modifier.weight(0.13f)){
                                         Text("Класс ${j+1+(ii*6)}", style = textStyle5)
-                                        PanelInputTwo(i[j], listTwo[j+(ii*6)])
+                                        PanelInput(i[j], listTwo[j+(ii*6)])
                                         SelectPanel(i[j], BD.teachers.value, listTwo[j+(ii*6)])
                                     }
                                     Row(Modifier.weight(0.03f)){}
@@ -177,8 +169,4 @@ fun addLesson(BD: NNSBD){
             Row(Modifier.weight(0.01f)){}
         }
     }
-}
-
-fun delLessonButton(){
-
 }

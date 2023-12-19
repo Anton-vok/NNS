@@ -28,6 +28,9 @@ class LessonType(nTeacherList: MutableList<Teacher>, nName : String) : ToSelectP
 
 class NNSBD(day: Int, classroom: Int){
 
+    var state = false
+
+    var maxDay=day
     var classroomInt=classroom
 
     var allLesson = mutableListOf<Lesson>()
@@ -82,13 +85,6 @@ class NNSBD(day: Int, classroom: Int){
     fun delTeacher(teacher: Teacher){
         teachers.value=teachers.value.filterNot { it == teacher }
     }
-    fun findLesTea(lesson: String, classroom: Int, teacher: MutableState<String>){
-        for (i in lessonType.value){
-            if (i.name==lesson){
-                teacher.value=i.teacherList[classroom].name
-            }
-        }
-    }
 
     fun findError(lesson: Lesson){
         var day=lesson.day
@@ -97,6 +93,42 @@ class NNSBD(day: Int, classroom: Int){
                 if ((j.timeStart<= lesson.timeStart && lesson.timeStart<= j.timeEnd) || (j.timeStart>= lesson.timeStart && lesson.timeStart>= j.timeEnd) && (lesson.day==j.day) && (lesson.teacher==j.teacher)){
                     errors.value=errors.value+ Pair(lesson, j)
                 }
+            }
+        }
+    }
+
+    fun find(classroom: Int, name: String):String{
+        for (i in lessonType.value){
+            if (i.name==name){
+                if (i.teacherList.size>=classroom){
+                    return i.teacherList[classroom-1].name
+                }
+            }
+        }
+        return "no"
+    }
+
+    fun addStandart(){
+        if (state) {
+        } else {
+            state=true
+            var teacherList = mutableListOf(
+                "name1",
+                "name2",
+            )
+            var lessonList = mutableListOf(
+                mutableListOf("n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8", "n9", "n10", "n11") to "les1",
+                mutableListOf("m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "m10", "m11") to "les2"
+            )
+            for (i in teacherList) {
+                addTeacher(i)
+            }
+            for (i in lessonList) {
+                var ii = mutableListOf<Teacher>()
+                for (j in i.first) {
+                    ii.add((Teacher(j)))
+                }
+                addLessonType(LessonType(ii, i.second))
             }
         }
     }
